@@ -1,0 +1,32 @@
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    /*flex-direction: row; 
+    justify-content: center;*/
+    flex-wrap: wrap;
+    /*align-items: center;*/
+}
+
+.flex-item {
+    background-color: cornflowerblue;
+    width: 200px;
+    height: 300px;
+    margin: 50px;
+}
+
+input.full-width {
+  width: 50%;
+}
+input.has-padding {
+  padding: 12px 20px 12px 50px;
+}
+
+input.has-border {
+  border: 1px solid #d2d8d8;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+}

@@ -1,0 +1,44 @@
+/* Master Styles */
+@import url('https://fonts.googleapis.com/css?family=Karla');
+
+
+h1 {
+  color: #369;
+  
+  font-size: 250%;
+}
+h2, h3 {
+  color: #444;
+  
+  font-weight: lighter;
+}
+body {
+  margin: 0px;
+  
+}
+body, button {
+  color: #888;
+  font-family: Karla;
+}
+a {
+  cursor: pointer;
+  cursor: hand;
+}
+button {
+  
+  background-color: #eee;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  cursor: hand;
+}
+button:hover {
+  background-color: #cfd8dc;
+}
+button:disabled {
+  background-color: #eee;
+  color: #aaa;
+  cursor: auto;
+}
+

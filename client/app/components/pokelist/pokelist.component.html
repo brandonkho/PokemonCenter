@@ -1,0 +1,28 @@
+<form class="well" (submit)="addPokemon($event)">
+      <div class="form-group">
+        <input type="text" [(ngModel)]="name" name="name" class="form-control" placeholder="Add Task...">    
+      </div>
+
+      <div class="form-group">
+        <input type="checkbox" name="isShiny" value="Shiny">
+      </div>  
+
+      <div class="form-group">
+        <input type="number" name="level" min="1" max="100">
+      </div>
+
+      
+</form>
+
+<input (input)="search($event.target.value)" class="searchbar full-width has-padding has-border" type="text" name="search" placeholder="Search..">
+
+<div class="flex-container">
+    <div *ngFor="let pokemon of pokemonList" class="flex-item">
+        
+        <pokemon [pokemon] = "pokemon">
+        </pokemon> 
+
+        
+        <br><br>
+    </div>
+</div>

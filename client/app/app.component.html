@@ -1,0 +1,28 @@
+<ul class="navigation">
+  <li style="float:left"><a (click)="showDialog = !showDialog">Home</a></li>
+  <li><a (click)="showRegister = !showRegister">Sign Up</a></li>
+  <li><a href="#">Products</a></li>
+  <li><a href="#">Contact</a></li>
+</ul>
+
+
+    
+
+<button (click)="showDialog = !showDialog" class="btn">Open</button>
+
+<login [(visible)]="showDialog">
+  
+  
+</login>
+
+<register [(visible)]="showRegister">
+
+</register>
+
+
+<div class="container">
+    <h1>MyTaskList</h1>
+    
+    
+    <pokelist></pokelist>
+</div>
