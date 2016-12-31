@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, OnChanges, EventEmitter, trigger, state, style, animate, transition } from '@angular/core';
 import {AuthService} from '../../services/auth-service/auth.service';
 //import {Task} from '../../../Task';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   moduleId: module.id,
@@ -28,21 +29,36 @@ export class RegisterComponent implements OnInit {
     password: string = '';
     email: string = '';
     password2: string = '';
+    registerForm: FormGroup;
     
-    constructor(private authService:AuthService){
-        
+    constructor(private authService:AuthService, public formBuilder: FormBuilder){
+        this.registerForm = formBuilder.group({
+            username: ['', Validators.required],
+            email: ['', Validators.required],
+            password: ['', Validators.required],
+            password2: ['', Validators.required],
+            
+        });
+    }
+
+    isValid(field: string) {
+        let formField = this.registerForm.get(field);
+        console.log(formField.valid);
+        return formField.valid || formField.pristine;
     }
     
     ngOnInit() { }
 
-    submit() {
+    submit(model) {
         console.log(this.username); 
-        this.authService.register(this.username, this.password, this.email, this.password2).then(() => {
+        this.authService.register(model.username, model.password, model.email, model.password2).then(() => {
             this.authService.getCurrentUser();
+            this.close();
         });
     }
 
     close() {
+        this.registerForm.reset();
         this.visible = false;
         this.visibleChange.emit(this.visible);
     }

@@ -1,14 +1,14 @@
 <div [@dialog] *ngIf="visible" class="dialog">
   <h2>Log in</h2>
-  <form class="cd-form" (ngSubmit)="submit()">
+  <form class="cd-form" [formGroup]="loginForm" (ngSubmit)="submit(loginForm.value)">
     <div class="form-group">
       
-      <input type="text" class="form-control full-width has-padding has-border" [(ngModel)]="username" name="username" placeholder="Username" #spy>
+      <input type="text" class="form-control full-width has-padding has-border" formControlName="username" name="username" placeholder="Username" #spy>
       
     </div>
     <div class="form-group">
       
-      <input type="password" class="form-control full-width has-padding has-border" [(ngModel)]="password" name="password" placeholder="Password">
+      <input type="password" class="form-control full-width has-padding has-border" formControlName="password" name="password" placeholder="Password">
     </div>
     <button type="submit" class="submit-button">Submit</button>
   </form>

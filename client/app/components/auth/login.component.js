@@ -11,28 +11,41 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var auth_service_1 = require('../../services/auth-service/auth.service');
 //import {Task} from '../../../Task';
+var forms_1 = require('@angular/forms');
 var LoginComponent = (function () {
-    function LoginComponent(authService) {
+    function LoginComponent(authService, formBuilder) {
         this.authService = authService;
+        this.formBuilder = formBuilder;
         this.closable = true;
         this.visibleChange = new core_1.EventEmitter();
         this.username = '';
         this.password = '';
+        this.loginForm = formBuilder.group({
+            username: ['', forms_1.Validators.required],
+            password: ['', forms_1.Validators.required],
+        });
     }
+    LoginComponent.prototype.isValid = function (field) {
+        var formField = this.loginForm.get(field);
+        console.log(formField.valid);
+        return formField.valid || formField.pristine;
+    };
     LoginComponent.prototype.ngOnInit = function () { };
     LoginComponent.prototype.logout = function (event) {
         this.authService.logout().then(function () {
             console.log('logged ou');
         });
     };
-    LoginComponent.prototype.submit = function () {
+    LoginComponent.prototype.submit = function (model) {
         var _this = this;
-        this.authService.login(this.username, this.password).then(function () {
+        this.authService.login(model.username, model.password).then(function () {
             console.log('getuser');
             _this.authService.getCurrentUser();
+            _this.close();
         });
     };
     LoginComponent.prototype.close = function () {
+        this.loginForm.reset();
         this.visible = false;
         this.visibleChange.emit(this.visible);
     };
@@ -66,7 +79,7 @@ var LoginComponent = (function () {
                 ])
             ]
         }), 
-        __metadata('design:paramtypes', [auth_service_1.AuthService])
+        __metadata('design:paramtypes', [auth_service_1.AuthService, forms_1.FormBuilder])
     ], LoginComponent);
     return LoginComponent;
 }());

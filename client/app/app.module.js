@@ -22,6 +22,7 @@ var dialog_component_1 = require('./components/dialog/dialog.component');
 var profile_component_1 = require('./components/profile/profile.component');
 var ng2_modal_1 = require("ng2-modal");
 var router_1 = require('@angular/router');
+var forms_2 = require('@angular/forms');
 var appRoutes = [
     { path: 'user/:username', component: profile_component_1.ProfileComponent },
     { path: '', component: pokelist_component_1.PokeListComponent },
@@ -31,7 +32,7 @@ var AppModule = (function () {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, http_1.HttpModule, forms_1.FormsModule, ng2_modal_1.ModalModule, router_1.RouterModule.forRoot(appRoutes)],
+            imports: [platform_browser_1.BrowserModule, http_1.HttpModule, forms_1.FormsModule, ng2_modal_1.ModalModule, router_1.RouterModule.forRoot(appRoutes), forms_2.ReactiveFormsModule],
             declarations: [app_component_1.AppComponent, tasks_component_1.TasksComponent, pokelist_component_1.PokeListComponent, login_component_1.LoginComponent, register_component_1.RegisterComponent, pokemon_component_1.PokemonComponent, dialog_component_1.DialogComponent, profile_component_1.ProfileComponent],
             bootstrap: [app_component_1.AppComponent]
         }), 

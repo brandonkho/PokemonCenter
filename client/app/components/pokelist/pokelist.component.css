@@ -79,13 +79,11 @@ input.has-border {
 .form-submit {
     margin-right:10px;
     width:100px;
-    background:#6FC3DF;
-    border-bottom: #16a085 3px solid;
-    border-left: #16a085 1px solid;
-    border-right: #16a085 1px solid;
+    background:#222326;
+    border:#DF740C 2px solid;
     border-radius:6px;
     text-align:center;
-    color:white;
+    color:#6FC3DF;
     padding:10px;
     float:left;
     font-size:12px;

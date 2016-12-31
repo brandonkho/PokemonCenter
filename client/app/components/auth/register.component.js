@@ -11,25 +11,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var auth_service_1 = require('../../services/auth-service/auth.service');
 //import {Task} from '../../../Task';
+var forms_1 = require('@angular/forms');
 var RegisterComponent = (function () {
-    function RegisterComponent(authService) {
+    function RegisterComponent(authService, formBuilder) {
         this.authService = authService;
+        this.formBuilder = formBuilder;
         this.closable = true;
         this.visibleChange = new core_1.EventEmitter();
         this.username = '';
         this.password = '';
         this.email = '';
         this.password2 = '';
+        this.registerForm = formBuilder.group({
+            username: ['', forms_1.Validators.required],
+            email: ['', forms_1.Validators.required],
+            password: ['', forms_1.Validators.required],
+            password2: ['', forms_1.Validators.required],
+        });
     }
+    RegisterComponent.prototype.isValid = function (field) {
+        var formField = this.registerForm.get(field);
+        console.log(formField.valid);
+        return formField.valid || formField.pristine;
+    };
     RegisterComponent.prototype.ngOnInit = function () { };
-    RegisterComponent.prototype.submit = function () {
+    RegisterComponent.prototype.submit = function (model) {
         var _this = this;
         console.log(this.username);
-        this.authService.register(this.username, this.password, this.email, this.password2).then(function () {
+        this.authService.register(model.username, model.password, model.email, model.password2).then(function () {
             _this.authService.getCurrentUser();
+            _this.close();
         });
     };
     RegisterComponent.prototype.close = function () {
+        this.registerForm.reset();
         this.visible = false;
         this.visibleChange.emit(this.visible);
     };
@@ -63,7 +78,7 @@ var RegisterComponent = (function () {
                 ])
             ]
         }), 
-        __metadata('design:paramtypes', [auth_service_1.AuthService])
+        __metadata('design:paramtypes', [auth_service_1.AuthService, forms_1.FormBuilder])
     ], RegisterComponent);
     return RegisterComponent;
 }());

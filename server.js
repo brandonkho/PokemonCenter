@@ -10,7 +10,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 var index = require('./routes/index');
-var tasks = require('./routes/tasks');
+//var tasks = require('./routes/tasks');
 var pokemon = require('./routes/pokemon');
 var trash = require('./routes/trash');
 var users = require('./routes/users');
@@ -68,7 +68,7 @@ app.use(function (req, res, next) {
 });
 
 app.use('/', index);
-app.use('/api', tasks);
+//app.use('/api', tasks);
 app.use('/api', pokemon);
 app.use('/users', users);
 // app.use('/api', trash);

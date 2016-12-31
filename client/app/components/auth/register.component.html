@@ -1,23 +1,23 @@
 <div [@dialog] *ngIf="visible" class="dialog">
   <h2>Sign up</h2>
 
-  <form class="cd-form" (ngSubmit)="submit()">
+  <form class="cd-form" [formGroup]="registerForm" (ngSubmit)="submit(registerForm.value)">
      
     <div class="form-group">
       
-      <input type="text" class="form-control full-width has-padding has-border" [(ngModel)]="username" placeholder="Username" name="username">
+      <input type="text" class="form-control full-width has-padding has-border" formControlName="username" placeholder="Username" name="username">
     </div>
      <div class="form-group">
       
-      <input type="email" class="form-control full-width has-padding has-border" [(ngModel)]="email" placeholder="Email" name="email">
+      <input type="email" class="form-control full-width has-padding has-border" formControlName="email" placeholder="Email" name="email">
     </div>
     <div class="form-group">
       
-      <input type="password" class="form-control full-width has-padding has-border" [(ngModel)]="password" placeholder="Password" name="password">
+      <input type="password" class="form-control full-width has-padding has-border" formControlName="password" placeholder="Password" name="password">
     </div>
     <div class="form-group">
       
-      <input type="password" class="form-control full-width has-padding has-border" [(ngModel)]="password2" placeholder="Password" name="password2">
+      <input type="password" class="form-control full-width has-padding has-border" formControlName="password2" placeholder="Password" name="password2">
     </div>
     <button type="submit" class="submit-button">Submit</button>
   </form>

@@ -12,6 +12,7 @@ import {DialogComponent} from './components/dialog/dialog.component';
 import {ProfileComponent} from './components/profile/profile.component';
 import {ModalModule} from "ng2-modal";
 import { RouterModule, Routes } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms'
 
 const appRoutes: Routes = [
   { path: 'user/:username', component: ProfileComponent },
@@ -19,7 +20,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  imports:      [ BrowserModule, HttpModule, FormsModule, ModalModule, RouterModule.forRoot(appRoutes) ],
+  imports:      [ BrowserModule, HttpModule, FormsModule, ModalModule, RouterModule.forRoot(appRoutes), ReactiveFormsModule ],
   declarations: [AppComponent, TasksComponent, PokeListComponent, LoginComponent, RegisterComponent, PokemonComponent, DialogComponent, ProfileComponent],
   bootstrap: [AppComponent]
 })
