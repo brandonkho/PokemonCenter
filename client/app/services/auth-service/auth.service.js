@@ -16,6 +16,7 @@ var AuthService = (function () {
         this.http = http;
         console.log('Auth Service Initialized...');
         this.user = null;
+        this.getCurrentUser();
         // return ({
         //   isLoggedIn: isLoggedIn,
         //   getUserStatus: getUserStatus,

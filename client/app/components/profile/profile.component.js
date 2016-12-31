@@ -9,18 +9,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var pokemon_service_1 = require('../../services/pokemon-service/pokemon.service');
+var user_service_1 = require('../../services/user-service/user.service');
+var router_1 = require('@angular/router');
 var ProfileComponent = (function () {
-    function ProfileComponent(pokemonService) {
-        this.pokemonService = pokemonService;
+    function ProfileComponent(route, router, userService) {
+        this.route = route;
+        this.router = router;
+        this.userService = userService;
     }
+    ProfileComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.sub = this.route.params.subscribe(function (params) {
+            _this.userService.getUserByUsername(params['username'])
+                .subscribe(function (user) {
+                console.log(user);
+                _this.user = user;
+            });
+            //this.username = params['username']; // (+) converts string 'id' to a number
+            // In a real app: dispatch action to load the details here.
+        });
+    };
+    ProfileComponent.prototype.ngOnDestroy = function () {
+        this.sub.unsubscribe();
+    };
     ProfileComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'profile',
             templateUrl: 'profile.component.html',
         }), 
-        __metadata('design:paramtypes', [pokemon_service_1.PokemonService])
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router, user_service_1.UserService])
     ], ProfileComponent);
     return ProfileComponent;
 }());

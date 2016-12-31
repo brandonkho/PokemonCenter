@@ -16,6 +16,9 @@ var UserSchema = mongoose.Schema({
 	name: {
 		type: String
 	},
+	fc: {
+		type: String
+	},
 	pokemon: [{type: mongoose.Schema.Types.ObjectId, ref: 'pokemon'}]
 });
 

@@ -21,6 +21,15 @@ router.get('/dank', function(req, res){
 	});
 });
 
+router.get('/username/:username', function(req, res, next){
+    User.getUserByUsername(req.params.username, function(err, user){
+    	if(err){
+            res.send(err);
+        }
+        res.json(user);
+    });
+});
+
 router.get('/currentuser', function(req, res){
 	res.send(req.user);
 });
@@ -54,7 +63,8 @@ router.post('/register', function(req, res){
 			//name: name,
 			email:email,
 			username: username,
-			password: password
+			password: password,
+			fc: ''
 		});
 
 		User.createUser(newUser, function(err, user){

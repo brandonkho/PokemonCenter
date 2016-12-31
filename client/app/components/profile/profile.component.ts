@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {PokemonService} from '../../services/pokemon-service/pokemon.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import {UserService} from '../../services/user-service/user.service';
 //import {Task} from '../../../Task';
 import {ModalModule} from "ng2-modal";
 import {LoginComponent} from './../auth/login.component';
@@ -16,12 +16,30 @@ import {Pokemon} from './../../angular-models/pokemon';
   
 })
 
-export class ProfileComponent { 
+export class ProfileComponent implements OnInit, OnDestroy { 
+    username: string;
+    private sub: any;
+    user: any;
     
-    
-    constructor(private pokemonService:PokemonService){
+    constructor(private route: ActivatedRoute, private router: Router, private userService: UserService){
         
     }
 
+    ngOnInit() {
+        this.sub = this.route.params.subscribe(params => {
+            this.userService.getUserByUsername(params['username'])
+            .subscribe(user => {
+                console.log(user);
+                this.user = user;
+            });
+            //this.username = params['username']; // (+) converts string 'id' to a number
+
+            // In a real app: dispatch action to load the details here.
+        });
+    }
+
+    ngOnDestroy() {
+        this.sub.unsubscribe();
+    }
     
 }

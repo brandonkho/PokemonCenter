@@ -9,6 +9,7 @@ export class AuthService{
     constructor(private http:Http){
         console.log('Auth Service Initialized...');
         this.user = null;
+        this.getCurrentUser();
 
         // return ({
         //   isLoggedIn: isLoggedIn,
