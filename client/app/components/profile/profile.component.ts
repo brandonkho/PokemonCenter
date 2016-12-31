@@ -4,6 +4,8 @@ import {PokemonService} from '../../services/pokemon-service/pokemon.service';
 import {ModalModule} from "ng2-modal";
 import {LoginComponent} from './../auth/login.component';
 import {PokemonComponent} from './../pokemon/pokemon.component';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+
 
 import {Pokemon} from './../../angular-models/pokemon';
 

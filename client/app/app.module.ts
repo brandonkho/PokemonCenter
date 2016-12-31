@@ -14,7 +14,7 @@ import {ModalModule} from "ng2-modal";
 import { RouterModule, Routes } from '@angular/router';
 
 const appRoutes: Routes = [
-  { path: 'username', component: ProfileComponent },
+  { path: ':username', component: ProfileComponent },
   { path: '', component: PokeListComponent  },
 ];
 

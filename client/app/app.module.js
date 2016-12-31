@@ -23,7 +23,7 @@ var profile_component_1 = require('./components/profile/profile.component');
 var ng2_modal_1 = require("ng2-modal");
 var router_1 = require('@angular/router');
 var appRoutes = [
-    { path: 'username', component: profile_component_1.ProfileComponent },
+    { path: ':username', component: profile_component_1.ProfileComponent },
     { path: '', component: pokelist_component_1.PokeListComponent },
 ];
 var AppModule = (function () {
