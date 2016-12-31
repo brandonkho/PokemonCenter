@@ -5,12 +5,16 @@ import { Pokemon } from './../../angular-models/pokemon';
   moduleId: module.id,
   selector: 'pokemon',
   template: `
+  	
   	<figure>
   		<img class="art" [ngClass]="pokemon.name.toLowerCase()">
   	</figure>
+  	
+  	
     <h2 class="name">{{pokemon.name}}</h2> 
-    <h3>Level: {{pokemon.level}}</h3>  
+    <h3 class="level">Level: {{pokemon.level}}</h3>  
     <p> rmao </p>
+    
 `,
   styleUrls: ['pokemon.component.css']
 })

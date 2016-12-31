@@ -1,3 +1,11 @@
+:host{
+    margin: 200px;
+}
+
+.container {
+    margin-top: 100px;
+}
+
 .flex-container {
     display: -webkit-flex;
     display: flex;
@@ -9,24 +17,81 @@
 }
 
 .flex-item {
-    background-color: cornflowerblue;
+    background-color: #222326;
     width: 200px;
     height: 300px;
-    margin: 50px;
+    margin: 25px;
+    border: 1px solid #6FC3DF;
+}
+
+input {
+    background-color: #4f5b66;
 }
 
 input.full-width {
-  width: 50%;
+    width: 50%;
 }
 input.has-padding {
-  padding: 12px 20px 12px 50px;
+    padding: 12px 20px 12px 50px;
 }
 
 input.has-border {
-  border: 1px solid #d2d8d8;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -ms-appearance: none;
-  -o-appearance: none;
-  appearance: none;
+    border: 1px solid #6FC3DF;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+}
+
+.pokemon-form {
+    background-color: #222326;
+    padding: 15px;
+    height: 300px;
+}
+
+.form-title {
+    color: #dfe0e6;
+}
+
+.searchbar {
+    margin: auto;
+    background-color: #4f5b66;
+    color: #FFF;
+}
+
+.search-holder{ text-align: center; }
+
+.side {
+  width: 300px;
+  float: left;
+}
+
+.form-item {
+    margin: 15px;
+}
+
+.form-name {
+    width: 200px;
+    height: 30px;
+}
+
+.form-submit {
+    margin-right:10px;
+    width:100px;
+    background:#6FC3DF;
+    border-bottom: #16a085 3px solid;
+    border-left: #16a085 1px solid;
+    border-right: #16a085 1px solid;
+    border-radius:6px;
+    text-align:center;
+    color:white;
+    padding:10px;
+    float:left;
+    font-size:12px;
+    font-weight:800;
+}
+
+label {
+  
 }

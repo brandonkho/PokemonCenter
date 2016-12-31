@@ -1,4 +1,26 @@
-img{border:0;}
+:host{
+	color: Red;
+}
+
+.top{
+	background-color: #000;
+}
+
+.bottom{
+	background-color: #FFF;
+}
+
+.name {
+	color: #dfe0e6;
+}
+
+.level {
+	color: #dfe0e6;
+}
+
+/*figure{
+	background-color: #000;
+}*/
 
 .art{
     background-image:url('./../../../static/art.png');

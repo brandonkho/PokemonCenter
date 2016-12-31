@@ -13,8 +13,16 @@ var task_service_1 = require('./services/task-service/task.service');
 var pokemon_service_1 = require('./services/pokemon-service/pokemon.service');
 var auth_service_1 = require('./services/auth-service/auth.service');
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(authService) {
+        this.authService = authService;
     }
+    AppComponent.prototype.logout = function (event) {
+        var _this = this;
+        this.authService.logout().then(function () {
+            console.log('error here');
+            _this.authService.getCurrentUser();
+        });
+    };
     AppComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
@@ -23,7 +31,7 @@ var AppComponent = (function () {
             styleUrls: ['app.component.css'],
             providers: [task_service_1.TaskService, pokemon_service_1.PokemonService, auth_service_1.AuthService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [auth_service_1.AuthService])
     ], AppComponent);
     return AppComponent;
 }());

@@ -15,6 +15,12 @@ router.get('/login', function(req, res){
 	res.render('login.html');
 });
 
+router.get('/dank', function(req, res){
+	res.status(200).json({
+	  status: 'thisworks'
+	});
+});
+
 router.get('/currentuser', function(req, res){
 	res.send(req.user);
 });
@@ -53,7 +59,19 @@ router.post('/register', function(req, res){
 
 		User.createUser(newUser, function(err, user){
 			if(err) throw err;
-			console.log(user);
+			console.log('lebron james');
+			req.logIn(user, function(err) {
+		      if (err) {
+		        return res.status(500).json({
+		          err: 'Could not log in user'
+		        });
+		      }
+		      console.log('logged in fam');
+		      console.log(req.user);
+		      return res.status(200).json({
+		  		status: 'Registration successful!'
+			  });
+		    });
 		});
 
 		//req.flash('success_msg', 'You are registered and can now login');
@@ -65,9 +83,9 @@ router.post('/register', function(req, res){
 	 //        status: 'Registration successful!'
 	 //      });
 	 //    });
-		return res.status(200).json({
-		  status: 'Registration successful!'
-		});
+		
+		console.log('yo?');
+		
 	}
 
 

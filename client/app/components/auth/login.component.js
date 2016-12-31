@@ -26,7 +26,11 @@ var LoginComponent = (function () {
         });
     };
     LoginComponent.prototype.submit = function () {
-        this.authService.login(this.username, this.password);
+        var _this = this;
+        this.authService.login(this.username, this.password).then(function () {
+            console.log('getuser');
+            _this.authService.getCurrentUser();
+        });
     };
     LoginComponent.prototype.close = function () {
         this.visible = false;

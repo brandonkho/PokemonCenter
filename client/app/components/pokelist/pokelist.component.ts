@@ -17,6 +17,8 @@ import {Pokemon} from './../../angular-models/pokemon';
 export class PokeListComponent { 
     pokemonList: Pokemon[];
     name: string;
+    level: number;
+    isShiny: boolean;
     
     constructor(private pokemonService:PokemonService){
         this.pokemonService.getPokemon()
@@ -39,8 +41,8 @@ export class PokeListComponent {
         event.preventDefault();
         var newPokemon = {
             name: this.name,
-            level: 30,
-            isShiny: false
+            level: this.level,
+            isShiny: this.isShiny
         }
         
         this.pokemonService.addPokemon(newPokemon)

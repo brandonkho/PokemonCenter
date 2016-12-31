@@ -1,22 +1,33 @@
-<form class="well" (submit)="addPokemon($event)">
-      <div class="form-group">
-        <input type="text" [(ngModel)]="name" name="name" class="form-control" placeholder="Add Task...">    
+
+<div class="container">
+
+<div class="side">
+    <form class="pokemon-form" (submit)="addPokemon($event)">
+      <h2 class="form-title"> Submit a Pokemon </h2>
+      <div class="form-item">
+        <input type="text" [(ngModel)]="name" name="name" class="form-name has-border" placeholder="Add Task...">    
       </div>
 
-      <div class="form-group">
-        <input type="checkbox" name="isShiny" value="Shiny">
+      <div class="form-item">
+        <input type="checkbox" [(ngModel)]="isShiny" name="isShiny" value="Shiny"><label> Shiny?</label>
       </div>  
 
-      <div class="form-group">
-        <input type="number" name="level" min="1" max="100">
+      <div class="form-item">
+        <input type="number" [(ngModel)]="level" name="level" min="1" max="100" class="has-border"><label> Level</label>
       </div>
+
+      <button type="submit" class="form-submit">Submit</button>
 
       
 </form>
-
-<input (input)="search($event.target.value)" class="searchbar full-width has-padding has-border" type="text" name="search" placeholder="Search..">
-
+</div>
+<div>
+<div class="search-holder">
+        <input (input)="search($event.target.value)" class="searchbar full-width has-padding has-border" type="text" name="search" placeholder="Search..">
+    </div>
 <div class="flex-container">
+    
+
     <div *ngFor="let pokemon of pokemonList" class="flex-item">
         
         <pokemon [pokemon] = "pokemon">
@@ -25,4 +36,7 @@
         
         <br><br>
     </div>
+</div>
+</div>
+
 </div>

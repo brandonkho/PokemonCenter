@@ -6,9 +6,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var pokemonSchema = new Schema({
+    _owner : { type: String, ref: 'User' },
     name: String, 
     level: Number, 
-    isShiny: Boolean
+    isShiny: Boolean,
 }, {collection: 'pokemon'});
 
 var Pokemon = mongoose.model('pokemon', pokemonSchema);
@@ -57,6 +58,7 @@ router.get('/pokemon/:id', function(req, res, next){
 //Save pokemon
 router.post('/pokemon', function(req, res, next){
     var pokemon = req.body;
+    pokemon._owner = req.user._id;
     if(!pokemon.name){
         res.status(400);
         res.json({
@@ -68,7 +70,16 @@ router.post('/pokemon', function(req, res, next){
             if(err){
                 res.send(err);
             }
-            res.json(pokemon);
+            Pokemon.findOne({name: pokemon.name})
+            .populate('_owner')
+            .exec(function (err, pokemon) {
+              if (err) return handleError(err);
+              console.log(pokemon);
+              console.log('The creator is %s', pokemon._owner.username);
+              // prints "The creator is Aaron"
+              res.json(pokemon);
+            });
+            
         });
         // db.pokemon.save(pokemon, function(err, pokemon){
         //     if(err){
@@ -76,6 +87,8 @@ router.post('/pokemon', function(req, res, next){
         //     }
         //     res.json(pokemon);
         // });
+        
+        
     }
 });
 

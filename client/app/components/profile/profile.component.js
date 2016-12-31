@@ -9,24 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var pokemon_1 = require('./../../angular-models/pokemon');
-var PokemonComponent = (function () {
-    function PokemonComponent() {
+var pokemon_service_1 = require('../../services/pokemon-service/pokemon.service');
+var ProfileComponent = (function () {
+    function ProfileComponent(pokemonService) {
+        this.pokemonService = pokemonService;
     }
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', pokemon_1.Pokemon)
-    ], PokemonComponent.prototype, "pokemon", void 0);
-    PokemonComponent = __decorate([
+    ProfileComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'pokemon',
-            template: "\n  \t\n  \t<figure>\n  \t\t<img class=\"art\" [ngClass]=\"pokemon.name.toLowerCase()\">\n  \t</figure>\n  \t\n  \t\n    <h2 class=\"name\">{{pokemon.name}}</h2> \n    <h3 class=\"level\">Level: {{pokemon.level}}</h3>  \n    <p> rmao </p>\n    \n",
-            styleUrls: ['pokemon.component.css']
+            selector: 'profile',
+            templateUrl: 'profile.component.html',
         }), 
-        __metadata('design:paramtypes', [])
-    ], PokemonComponent);
-    return PokemonComponent;
+        __metadata('design:paramtypes', [pokemon_service_1.PokemonService])
+    ], ProfileComponent);
+    return ProfileComponent;
 }());
-exports.PokemonComponent = PokemonComponent;
-//# sourceMappingURL=pokemon.component.js.map
+exports.ProfileComponent = ProfileComponent;
+//# sourceMappingURL=profile.component.js.map

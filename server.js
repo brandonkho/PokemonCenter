@@ -16,7 +16,7 @@ var trash = require('./routes/trash');
 var users = require('./routes/users');
 
 var mongoose = require('mongoose');
-mongoose.connect('')
+mongoose.connect('mongodb://bk:California1@ds127998.mlab.com:27998/pokemoncenter')
 
 var port = 3000;
 

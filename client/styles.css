@@ -19,6 +19,7 @@ body {
 body, button {
   color: #888;
   font-family: Karla;
+  background-color: #111111;
 }
 a {
   cursor: pointer;
@@ -41,4 +42,6 @@ button:disabled {
   color: #aaa;
   cursor: auto;
 }
+
+
 

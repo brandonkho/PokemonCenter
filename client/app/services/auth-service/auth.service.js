@@ -45,9 +45,11 @@ var AuthService = (function () {
                 res.json();
             })
                 .subscribe(function (data) {
-                console.log(data);
+                _this.user = true;
                 resolve();
             }, function (err) {
+                console.log('err');
+                _this.getCurrentUser();
                 reject();
             });
         });
@@ -60,9 +62,10 @@ var AuthService = (function () {
                 res.json();
             })
                 .subscribe(function (data) {
-                console.log(data);
+                console.log('error over here');
                 resolve();
             }, function (err) {
+                console.log('rejected');
                 reject();
             });
         });
@@ -81,6 +84,31 @@ var AuthService = (function () {
                 reject();
             });
         });
+    };
+    AuthService.prototype.getCurrentUser = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.http.get('users/currentuser')
+                .map(function (res) {
+                if (res._body == "") {
+                    console.log('error in get current user');
+                    _this.currentUser = null;
+                }
+                else {
+                    console.log(res);
+                    _this.currentUser = res.json();
+                }
+            })
+                .subscribe(function (data) {
+                resolve();
+            }, function (err) {
+                reject();
+            });
+        });
+    };
+    AuthService.prototype.getPokemon = function () {
+        return this.http.get('/users/currentuser')
+            .map(function (res) { return res.json(); });
     };
     AuthService = __decorate([
         core_1.Injectable(), 

@@ -37,7 +37,9 @@ export class RegisterComponent implements OnInit {
 
     submit() {
         console.log(this.username); 
-        this.authService.register(this.username, this.password, this.email, this.password2);
+        this.authService.register(this.username, this.password, this.email, this.password2).then(() => {
+            this.authService.getCurrentUser();
+        });
     }
 
     close() {

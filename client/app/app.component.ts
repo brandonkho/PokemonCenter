@@ -12,4 +12,18 @@ import {AuthService} from './services/auth-service/auth.service';
   providers:[TaskService, PokemonService, AuthService]
 })
 
-export class AppComponent { }
+export class AppComponent {
+	constructor(private authService:AuthService){
+    
+    }
+
+    logout(event){
+        this.authService.logout().then(() => {
+        	console.log('error here');
+        	this.authService.getCurrentUser();
+        });
+        	
+    }
+
+
+}

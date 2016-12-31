@@ -23,8 +23,11 @@ var RegisterComponent = (function () {
     }
     RegisterComponent.prototype.ngOnInit = function () { };
     RegisterComponent.prototype.submit = function () {
+        var _this = this;
         console.log(this.username);
-        this.authService.register(this.username, this.password, this.email, this.password2);
+        this.authService.register(this.username, this.password, this.email, this.password2).then(function () {
+            _this.authService.getCurrentUser();
+        });
     };
     RegisterComponent.prototype.close = function () {
         this.visible = false;

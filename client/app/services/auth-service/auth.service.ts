@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthService{
+    currentUser: any;
     user: boolean;
     constructor(private http:Http){
         console.log('Auth Service Initialized...');
@@ -39,9 +40,11 @@ export class AuthService{
                 res.json()
             })
             .subscribe((data) => {
-                console.log(data);
+                this.user = true;
                 resolve();
             },(err) => {
+                console.log('err');
+                this.getCurrentUser();
                 reject();
             });
         });
@@ -54,9 +57,11 @@ export class AuthService{
                 res.json()
             })
             .subscribe((data) => {
-                console.log(data);
+                
+                console.log('error over here');
                 resolve();
             },(err) => {
+                console.log('rejected');
                 reject();
             });
         });
@@ -69,6 +74,7 @@ export class AuthService{
                 res.json()
             })
             .subscribe((data) => {
+                
                 console.log(data);
                 resolve();
             },(err) => {
@@ -77,6 +83,36 @@ export class AuthService{
         });
     }
 
+
+    getCurrentUser(){
+        
+        return new Promise((resolve, reject) => {
+            this.http.get('users/currentuser')
+            .map((res) => {
+                
+                if(res._body == ""){
+                    console.log('error in get current user');
+                    this.currentUser = null;
+                }else{
+                    console.log(res);
+                    this.currentUser = res.json();
+                }
+                
+            })
+            .subscribe((data) => {
+                
+                
+                resolve();
+            },(err) => {
+                reject();
+            });
+        });
+    }
+
+    getPokemon(){
+        return this.http.get('/users/currentuser')
+            .map(res => res.json());
+    }
 
     
 }

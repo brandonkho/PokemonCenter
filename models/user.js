@@ -15,7 +15,8 @@ var UserSchema = mongoose.Schema({
 	},
 	name: {
 		type: String
-	}
+	},
+	pokemon: [{type: mongoose.Schema.Types.ObjectId, ref: 'pokemon'}]
 });
 
 var User = module.exports = mongoose.model('User', UserSchema);

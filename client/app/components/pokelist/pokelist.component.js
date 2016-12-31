@@ -32,8 +32,8 @@ var PokeListComponent = (function () {
         event.preventDefault();
         var newPokemon = {
             name: this.name,
-            level: 30,
-            isShiny: false
+            level: this.level,
+            isShiny: this.isShiny
         };
         this.pokemonService.addPokemon(newPokemon)
             .subscribe(function (task) {

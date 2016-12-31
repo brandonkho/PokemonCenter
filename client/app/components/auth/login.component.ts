@@ -42,7 +42,10 @@ export class LoginComponent implements OnInit{
     }
 
     submit() { 
-        this.authService.login(this.username, this.password);
+        this.authService.login(this.username, this.password).then(() => {
+            console.log('getuser');
+            this.authService.getCurrentUser();
+        });
     }
 
     close() {
