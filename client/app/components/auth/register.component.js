@@ -73,7 +73,8 @@ var RegisterComponent = (function () {
                         core_1.animate(100)
                     ]),
                     core_1.transition('* => void', [
-                        core_1.animate(100, core_1.style({ transform: 'scale3d(.0, .0, .0)' }))
+                        // animate(100, style({ transform: 'scale3d(.0, .0, .0)' }))
+                        core_1.animate(100, core_1.style({ transform: 'translateY(100%)' }))
                     ])
                 ])
             ]

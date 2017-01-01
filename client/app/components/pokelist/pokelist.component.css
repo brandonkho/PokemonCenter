@@ -93,3 +93,8 @@ input.has-border {
 label {
   
 }
+
+.suggestions {
+    position: absolute;
+}
+

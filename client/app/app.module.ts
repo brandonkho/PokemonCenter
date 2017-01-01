@@ -12,7 +12,7 @@ import {DialogComponent} from './components/dialog/dialog.component';
 import {ProfileComponent} from './components/profile/profile.component';
 import {ModalModule} from "ng2-modal";
 import { RouterModule, Routes } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms'
+import { ReactiveFormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
   { path: 'user/:username', component: ProfileComponent },

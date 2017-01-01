@@ -5,9 +5,15 @@
     <form class="pokemon-form" (submit)="addPokemon($event)">
       <h2 class="form-title"> Submit a Pokemon </h2>
       <div class="form-item">
-        <input type="text" [(ngModel)]="name" name="name" class="form-name has-border" placeholder="Add Task...">    
+        <input type="text" [(ngModel)]="name" (keyup)=filter() name="name" class="form-name has-border" placeholder="Add Task...">    
       </div>
-
+      <div class="suggestions" *ngIf="filteredList.length > 0">
+                <ul *ngFor="let item of filteredList" >
+                    <li style="list-style-type: none;">
+                        <a (click)="select(item)">{{item}}</a>
+                    </li>
+                </ul>
+            </div>
       <div class="form-item">
         <input type="checkbox" [(ngModel)]="isShiny" name="isShiny" value="Shiny"><label> Shiny?</label>
       </div>  
