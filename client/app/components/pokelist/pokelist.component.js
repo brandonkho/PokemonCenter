@@ -10,27 +10,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var pokemon_service_1 = require('../../services/pokemon-service/pokemon.service');
+var list_1 = require('./list');
 var PokeListComponent = (function () {
     function PokeListComponent(pokemonService, myElement) {
         var _this = this;
         this.pokemonService = pokemonService;
         this.name = '';
-        // public query = '';
-        this.countries = ["Albania", "Andorra", "Armenia", "Articuno", "Austria", "Azerbaijan", "Belarus",
-            "Belgium", "Bosnia & Herzegovina", "Bulgaria", "Croatia", "Cyprus",
-            "Czech Republic", "Denmark", "Estonia", "Finland", "France", "Georgia",
-            "Germany", "Greece", "Hungary", "Iceland", "Ireland", "Italy", "Kosovo",
-            "Latvia", "Liechtenstein", "Lithuania", "Luxembourg", "Macedonia", "Malta",
-            "Moldova", "Monaco", "Montenegro", "Netherlands", "Norway", "Poland",
-            "Portugal", "Romania", "Russia", "San Marino", "Serbia", "Slovakia", "Slovenia",
-            "Spain", "Sweden", "Switzerland", "Turkey", "Ukraine", "United Kingdom", "Vatican City"];
         this.filteredList = [];
+        this.countries = list_1.PKMN;
         this.elementRef = myElement;
         this.pokemonService.getPokemon()
             .subscribe(function (pokemonList) {
             _this.pokemonList = pokemonList;
         });
     }
+    ;
     PokeListComponent.prototype.search = function (searchTerm) {
         var _this = this;
         console.log("search");

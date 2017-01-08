@@ -6,6 +6,7 @@ import {LoginComponent} from './../auth/login.component';
 import {PokemonComponent} from './../pokemon/pokemon.component';
 
 import {Pokemon} from './../../angular-models/pokemon';
+import {PKMN} from './list';
 
 @Component({
   moduleId: module.id,
@@ -23,18 +24,13 @@ export class PokeListComponent {
     level: number;
     isShiny: boolean;
     // public query = '';
-    public countries = [ "Albania","Andorra","Armenia", "Articuno", "Austria","Azerbaijan","Belarus",
-                        "Belgium","Bosnia & Herzegovina","Bulgaria","Croatia","Cyprus",
-                        "Czech Republic","Denmark","Estonia","Finland","France","Georgia",
-                        "Germany","Greece","Hungary","Iceland","Ireland","Italy","Kosovo",
-                        "Latvia","Liechtenstein","Lithuania","Luxembourg","Macedonia","Malta",
-                        "Moldova","Monaco","Montenegro","Netherlands","Norway","Poland",
-                        "Portugal","Romania","Russia","San Marino","Serbia","Slovakia","Slovenia",
-                        "Spain","Sweden","Switzerland","Turkey","Ukraine","United Kingdom","Vatican City"];
+    public countries: string[];;
     public filteredList = [];
     public elementRef;
     
+    
     constructor(private pokemonService:PokemonService, myElement: ElementRef){
+        this.countries = PKMN;
         this.elementRef = myElement;
         this.pokemonService.getPokemon()
             .subscribe(pokemonList => {
