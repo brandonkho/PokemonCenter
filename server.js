@@ -22,6 +22,9 @@ var port = 3000;
 
 var app = express();
 
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs')
 app.engine('html', require('ejs').renderFile);
@@ -73,6 +76,13 @@ app.use('/api', pokemon);
 app.use('/users', users);
 // app.use('/api', trash);
 
-app.listen(port, function(){
-	console.log('server started');
-})
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('message', function(msg){
+    console.log('message: ' + msg);
+  });
+});
+
+http.listen(3000, function(){
+  console.log('server started');
+});

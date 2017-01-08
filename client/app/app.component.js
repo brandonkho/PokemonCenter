@@ -13,11 +13,14 @@ var task_service_1 = require('./services/task-service/task.service');
 var pokemon_service_1 = require('./services/pokemon-service/pokemon.service');
 var auth_service_1 = require('./services/auth-service/auth.service');
 var user_service_1 = require('./services/user-service/user.service');
+var socket_service_1 = require('./services/socket-service/socket.service');
 var router_1 = require('@angular/router');
 var AppComponent = (function () {
-    function AppComponent(authService, router) {
+    function AppComponent(authService, socketService, router) {
         this.authService = authService;
+        this.socketService = socketService;
         this.router = router;
+        socketService.socket = io();
     }
     AppComponent.prototype.logout = function (event) {
         var _this = this;
@@ -29,15 +32,18 @@ var AppComponent = (function () {
     AppComponent.prototype.goToProfile = function (username) {
         this.router.navigate(['/user', username]);
     };
+    AppComponent.prototype.send = function (event) {
+        this.socketService.socket.emit('message', 'Hey!');
+    };
     AppComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'my-app',
             templateUrl: 'app.component.html',
             styleUrls: ['app.component.css'],
-            providers: [task_service_1.TaskService, pokemon_service_1.PokemonService, auth_service_1.AuthService, user_service_1.UserService]
+            providers: [task_service_1.TaskService, pokemon_service_1.PokemonService, auth_service_1.AuthService, user_service_1.UserService, socket_service_1.SocketService]
         }), 
-        __metadata('design:paramtypes', [auth_service_1.AuthService, router_1.Router])
+        __metadata('design:paramtypes', [auth_service_1.AuthService, socket_service_1.SocketService, router_1.Router])
     ], AppComponent);
     return AppComponent;
 }());

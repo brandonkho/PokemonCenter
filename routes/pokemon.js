@@ -20,7 +20,7 @@ router.get('/pokemon', function(req, res, next){
         if(err){
             res.send(err);
         }else{
-            console.log(req.query);
+            
             if(req.query['name']){
                 res.json(pokemon.filter(search(req.query)));
             }else{
