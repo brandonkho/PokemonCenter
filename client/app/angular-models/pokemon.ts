@@ -1,5 +1,6 @@
 export class Pokemon {
   name: string; 
   level: number; 
-  isShiny: boolean; 
+  isShiny: boolean;
+  _owner: any; 
 }

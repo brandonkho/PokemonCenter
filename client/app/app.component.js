@@ -32,6 +32,9 @@ var AppComponent = (function () {
     AppComponent.prototype.goToProfile = function (username) {
         this.router.navigate(['/user', username]);
     };
+    AppComponent.prototype.goToMessages = function () {
+        this.router.navigate(['/messages']);
+    };
     AppComponent.prototype.send = function (event) {
         this.socketService.socket.emit('message', 'Hey!');
     };

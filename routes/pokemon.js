@@ -16,7 +16,9 @@ var Pokemon = mongoose.model('pokemon', pokemonSchema);
 
 
 router.get('/pokemon', function(req, res, next){
-    Pokemon.find(function(err, pokemon){
+    Pokemon.find()
+    .populate('_owner')
+    .exec(function (err, pokemon) {
         if(err){
             res.send(err);
         }else{

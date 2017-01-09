@@ -81,6 +81,20 @@ io.on('connection', function(socket){
   socket.on('message', function(msg){
     console.log('message: ' + msg);
   });
+
+  socket.on('chat', function(data){
+    socket.emit('dank', data);
+    socket.broadcast.emit('dank', data);
+    io.sockets.in(data.to).emit('new_msg', {msg: data.msg});
+    io.sockets.in(data.from).emit('new_msg', {msg: data.msg});
+  });
+
+  socket.on('join', function (data) {
+    socket.join(data.user.username); // We are using room of socket io
+    console.log(data.user.username);
+  });
+
+  
 });
 
 http.listen(3000, function(){

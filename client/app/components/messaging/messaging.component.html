@@ -1,0 +1,19 @@
+<h1> {{title}} </h1>
+
+<div id="box">
+</div>
+
+<form class="pokemon-form" (submit)="sendMessage()" autocomplete="off">
+      
+      <div class="form-item">
+        <input type="text" [(ngModel)]="message" name="message"> 
+           
+      </div>
+      
+      
+      <div class="form-item">
+        <button >Submit</button>
+      </div>
+      
+</form>
+

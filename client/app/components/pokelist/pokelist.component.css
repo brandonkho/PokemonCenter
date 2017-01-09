@@ -17,16 +17,16 @@
 }
 
 .flex-item {
-    background-color: #222326;
+    background-color: #FFF;
     width: 200px;
     height: 300px;
     margin: 25px;
-    border: 1px solid #6FC3DF;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 input {
-    color: white;
-    background-color: #4f5b66;
+    color: black;
+    background-color: #FFF;
 }
 
 input.full-width {
@@ -46,7 +46,7 @@ input.has-border {
 }
 
 .pokemon-form {
-    background-color: #222326;
+    background-color: #FFF;
     padding: 15px;
     height: 300px;
 }
@@ -57,8 +57,7 @@ input.has-border {
 
 .searchbar {
     margin: auto;
-    background-color: #4f5b66;
-    color: #FFF;
+    
 }
 
 .search-holder{ text-align: center; }

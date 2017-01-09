@@ -33,6 +33,10 @@ export class AppComponent {
   	  this.router.navigate(['/user', username]);
   	}
 
+    goToMessages() {
+      this.router.navigate(['/messages']);
+    }
+
     send(event){
       this.socketService.socket.emit('message', 'Hey!');
     }

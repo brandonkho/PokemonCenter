@@ -10,9 +10,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var pokemon_1 = require('./../../angular-models/pokemon');
+var router_1 = require('@angular/router');
 var PokemonComponent = (function () {
-    function PokemonComponent() {
+    function PokemonComponent(router) {
+        this.router = router;
     }
+    PokemonComponent.prototype.goToMessages = function (username) {
+        this.router.navigate(['/messages', username]);
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', pokemon_1.Pokemon)
@@ -21,10 +26,10 @@ var PokemonComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'pokemon',
-            template: "\n  \t\n  \t<figure>\n  \t\t<img class=\"art\" [ngClass]=\"pokemon.name.toLowerCase()\">\n  \t</figure>\n  \t\n  \t\n    <h2 class=\"name\">{{pokemon.name}}</h2> \n    <h3 class=\"level\">Level: {{pokemon.level}}</h3>  \n    <p> rmao </p>\n    \n",
+            template: "\n  \t\n  \t<figure>\n  \t\t<img class=\"art\" [ngClass]=\"pokemon.name.toLowerCase()\">\n  \t</figure>\n  \t\n  \t\n    <h2 class=\"name\">{{pokemon.name}}</h2> \n    <h3 class=\"level\">Level: {{pokemon.level}}</h3>\n    <div *ngIf=\"pokemon._owner\" class=\"level\">\n      <a (click)=\"goToMessages(pokemon._owner.username)\">{{pokemon._owner.username}}</a>\n    </div>    \n    <p> rmao </p>\n    \n",
             styleUrls: ['pokemon.component.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [router_1.Router])
     ], PokemonComponent);
     return PokemonComponent;
 }());
