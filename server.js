@@ -9,11 +9,15 @@ var session = require('express-session');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
+var Conversation = require('./models/messaging');
+var Message = require('./models/messaging');
+
 var index = require('./routes/index');
 //var tasks = require('./routes/tasks');
 var pokemon = require('./routes/pokemon');
 var trash = require('./routes/trash');
 var users = require('./routes/users');
+var messaging = require('./routes/messaging');
 
 var mongoose = require('mongoose');
 mongoose.connect('')
@@ -74,6 +78,7 @@ app.use('/', index);
 //app.use('/api', tasks);
 app.use('/api', pokemon);
 app.use('/users', users);
+app.use('/api', messaging);
 // app.use('/api', trash);
 
 app.all('/*', function(req, res, next) {
@@ -82,26 +87,7 @@ app.all('/*', function(req, res, next) {
 });
 
 
-var Schema = mongoose.Schema;
 
-var conversationSchema = new Schema({
-    person1: String,
-    person2: String,
-
-});
-
-var Conversation = mongoose.model('conversation', conversationSchema);
-
-var messageSchema = new Schema({
-    // _sender : { type: String, ref: 'User' },
-    // _recipient: { type: String, ref: 'User' },
-    _conversation: { type: String, ref: 'conversation' },
-    _username: String, 
-    msg: String, 
-    created_at: {type: Date, default: Date.now}
-});
-
-var Message = mongoose.model('message', messageSchema);
 
 
 
