@@ -76,6 +76,35 @@ app.use('/api', pokemon);
 app.use('/users', users);
 // app.use('/api', trash);
 
+app.all('/*', function(req, res, next) {
+    // Just send the index.html for other files to support HTML5Mode
+    res.sendFile('views/index.html', { root: __dirname });
+});
+
+
+var Schema = mongoose.Schema;
+
+var conversationSchema = new Schema({
+    person1: String,
+    person2: String,
+
+});
+
+var Conversation = mongoose.model('conversation', conversationSchema);
+
+var messageSchema = new Schema({
+    // _sender : { type: String, ref: 'User' },
+    // _recipient: { type: String, ref: 'User' },
+    _conversation: { type: String, ref: 'conversation' },
+    _username: String, 
+    msg: String, 
+    created_at: {type: Date, default: Date.now}
+});
+
+var Message = mongoose.model('message', messageSchema);
+
+
+
 io.on('connection', function(socket){
   console.log('a user connected');
   socket.on('message', function(msg){
@@ -85,8 +114,63 @@ io.on('connection', function(socket){
   socket.on('chat', function(data){
     socket.emit('dank', data);
     socket.broadcast.emit('dank', data);
-    io.sockets.in(data.to).emit('new_msg', {msg: data.msg});
-    io.sockets.in(data.from).emit('new_msg', {msg: data.msg});
+
+    Conversation.findOne({
+      $or : [
+        {$and: [{person1: data.to}, {person2: data.from}]},
+        {$and: [{person1: data.from}, {person2: data.to}]}
+      ]
+    }, function(err, conversation){
+      if(err){
+            throw err;
+      }
+      console.log(conversation);
+      if(!conversation){
+        var newConversation = Conversation({person1: data.from, person2: data.to});
+        newConversation.save(function(err, conversation){
+          if(err){
+            throw err;
+          }
+          console.log(conversation);
+          var newMessage = Message({msg: data.msg, _conversation: conversation._id, _username: data.from});
+          newMessage.save(function(err, message){
+                  if(err){
+                      throw err;
+                  }
+                  Message.findOne({_id: message._id})
+                  .populate('_conversation')
+                  .exec(function(err, message){
+                    console.log(message);
+                  });
+          });
+          
+        });
+
+      }else{
+          var newMessage = Message({msg: data.msg, _conversation: conversation._id, _username: data.from});
+          newMessage.save(function(err, message){
+                  console.log(message);
+                  if(err){
+                      throw err;
+                  }
+                  Message.findOne({_id: message._id})
+                  .populate('_conversation')
+                  .exec(function(err, message){
+                    console.log(message._conversation._id);
+                  });
+          });
+      }
+    });
+
+
+    // var newMessage = Message({msg: data.msg});
+    // newMessage.save(function(err, message){
+    //         if(err){
+    //             throw err;
+    //         }
+    // });
+    io.sockets.in(data.to).emit('new_msg', {to: data.to, from: data.from, msg: data.msg});
+    io.sockets.in(data.from).emit('self_msg', {msg: data.msg});
   });
 
   socket.on('join', function (data) {

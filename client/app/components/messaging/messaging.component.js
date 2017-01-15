@@ -15,12 +15,20 @@ var auth_service_1 = require('./../../services/auth-service/auth.service');
 var user_service_1 = require('../../services/user-service/user.service');
 var MessagingComponent = (function () {
     function MessagingComponent(socketService, authService, userService, route, router) {
+        var _this = this;
         this.socketService = socketService;
         this.authService = authService;
         this.userService = userService;
         this.route = route;
         this.router = router;
         socketService.socket.on('new_msg', (function (data) {
+            console.log(data);
+            console.log(_this.otherUser.username);
+            if (data.from == _this.otherUser.username) {
+                $('#box').append($, '<p>' + data.msg + '</p>');
+            }
+        }).bind(this));
+        socketService.socket.on('self_msg', (function (data) {
             $('#box').append($, '<p>' + data.msg + '</p>');
         }).bind(this));
     }
@@ -30,7 +38,7 @@ var MessagingComponent = (function () {
             _this.userService.getUserByUsername(params['username'])
                 .subscribe(function (user) {
                 console.log(user);
-                _this.recipient = user;
+                _this.otherUser = user;
             });
             //this.username = params['username']; // (+) converts string 'id' to a number
             // In a real app: dispatch action to load the details here.
@@ -41,7 +49,7 @@ var MessagingComponent = (function () {
         this.sub.unsubscribe();
     };
     MessagingComponent.prototype.sendMessage = function () {
-        this.socketService.socket.emit('chat', { to: this.recipient.username, from: this.authService.currentUser.username, msg: this.message });
+        this.socketService.socket.emit('chat', { to: this.otherUser.username, from: this.authService.currentUser.username, msg: this.message });
         this.message = '';
     };
     MessagingComponent = __decorate([

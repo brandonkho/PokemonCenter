@@ -16,7 +16,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
       ]),
       transition('* => void', [
         // animate(100, style({ transform: 'scale3d(.0, .0, .0)' }))
-        animate(100, style({transform: 'translateY(100%)'}))
+        animate(200, style({transform: 'translateY(100%)'}))
       ])
     ])
   ]

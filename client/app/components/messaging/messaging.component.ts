@@ -18,12 +18,23 @@ declare let $;
 export class MessagingComponent implements OnInit, OnDestroy { 
     title: string;
     private sub: any;
-    recipient: any;
+    otherUser: any;
     message: string;
 
     constructor(private socketService: SocketService, private authService: AuthService, private userService: UserService, private route: ActivatedRoute, private router: Router){
         socketService.socket.on('new_msg', ((data) =>{
+            console.log(data);
+            console.log(this.otherUser.username)
+            if(data.from == this.otherUser.username){
+                $('#box').append($'<p>'+data.msg+'</p>');
+            }
+            
+        }).bind(this));
+
+        socketService.socket.on('self_msg', ((data) =>{
+
             $('#box').append($'<p>'+data.msg+'</p>');
+                
         }).bind(this));
     }
 
@@ -32,7 +43,7 @@ export class MessagingComponent implements OnInit, OnDestroy {
             this.userService.getUserByUsername(params['username'])
             .subscribe(user => {
                 console.log(user);
-                this.recipient = user;
+                this.otherUser = user;
             });
             //this.username = params['username']; // (+) converts string 'id' to a number
 
@@ -46,7 +57,7 @@ export class MessagingComponent implements OnInit, OnDestroy {
     }
 
     sendMessage(){
-        this.socketService.socket.emit('chat', {to: this.recipient.username, from: this.authService.currentUser.username, msg: this.message});
+        this.socketService.socket.emit('chat', {to: this.otherUser.username, from: this.authService.currentUser.username, msg: this.message});
         this.message = '';
     }
     
