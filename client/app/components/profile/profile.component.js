@@ -16,6 +16,7 @@ var ProfileComponent = (function () {
         this.route = route;
         this.router = router;
         this.userService = userService;
+        this.filesToUpload = [];
     }
     ProfileComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -31,6 +32,37 @@ var ProfileComponent = (function () {
     };
     ProfileComponent.prototype.ngOnDestroy = function () {
         this.sub.unsubscribe();
+    };
+    ProfileComponent.prototype.upload = function () {
+        this.makeFileRequest("http://localhost:3000/upload", [], this.filesToUpload).then(function (result) {
+            console.log(result);
+        }, function (error) {
+            console.error(error);
+        });
+    };
+    ProfileComponent.prototype.fileChangeEvent = function (fileInput) {
+        this.filesToUpload = fileInput.target.files;
+    };
+    ProfileComponent.prototype.makeFileRequest = function (url, params, files) {
+        return new Promise(function (resolve, reject) {
+            var formData = new FormData();
+            var xhr = new XMLHttpRequest();
+            for (var i = 0; i < files.length; i++) {
+                formData.append("uploads[]", files[i], files[i].name);
+            }
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        resolve(JSON.parse(xhr.response));
+                    }
+                    else {
+                        reject(xhr.response);
+                    }
+                }
+            };
+            xhr.open("POST", url, true);
+            xhr.send(formData);
+        });
     };
     ProfileComponent = __decorate([
         core_1.Component({

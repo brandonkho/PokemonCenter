@@ -1,11 +1,21 @@
+<nav class="nav">
 <ul class="navigation">
-  	<li><a routerLink="/" routerLinkActive="active">Home</a>
-    <li><a (click)="goToMessages()">Messages</a>
+        <li>
+            <a href="#">Nav Item</a>
+            <ul>
+                <li><a href="#">Subnav Item</a></li>
+                <li><a href="#">Subnav Item</a></li>
+                <li><a href="#">Subnav Item</a></li>
+            </ul>
+        </li>
+  	<li><a routerLink="/" routerLinkActive="active">Home</a></li>
+    <li><a (click)="goToMessages()">Messages</a></li>
     <li style="float:left"><a (click)="showDialog = !showDialog">Home</a></li>
     <li><a (click)="showRegister = !showRegister">Sign Up</a></li>
     <li><a (click)="logout()">Products</a></li>
     <li *ngIf="authService.currentUser"><a (click)="goToProfile(authService.currentUser.username)">{{authService.currentUser.username}}</a></li>
 </ul>
+</nav>
 
 
     

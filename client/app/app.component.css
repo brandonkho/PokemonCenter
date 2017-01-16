@@ -1,4 +1,4 @@
-.navigation {
+/*.navigation {
   list-style: none;
   margin: 0;
   background-color: #000;
@@ -24,12 +24,7 @@
     text-decoration: none;
 }
 
-/*.navigation a {
-  text-decoration: none;
-  display: block;
-  padding: 1em;
-  color: white;
-}*/
+
 
 .navigation a:hover {
   background-color: #00b7f5;
@@ -61,3 +56,71 @@
 
 
 
+*/
+
+.nav ul {
+    list-style: none;
+    margin: 0;
+    background-color: #000;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    justify-content: flex-end;
+}
+.nav ul:before,.nav ul:after {
+    content:"";
+    display:table;
+}
+.nav ul:after {
+    clear:both;
+}
+.nav ul > li {
+    float:left;
+    position:relative;
+}
+.nav a {
+    display:block;
+    padding:10px 20px;
+    line-height:1.2em;
+    color:#fff;
+    border-left:1px solid #595959;
+    text-decoration: none;
+}
+.nav a:hover {
+    text-decoration:none;
+    background:#595959;
+}
+.nav li ul {
+    background:#273754;
+}
+.nav li ul li {
+    width:200px;
+}
+.nav li ul a {
+    border:none;
+}
+.nav li ul a:hover {
+    background:rgba(0,0,0,0.2);
+}
+
+.nav li ul {
+    position:absolute;
+    left:0;
+    top:36px;
+    z-index:1;
+    max-height:0;
+    overflow:hidden;
+    -webkit-transform:perspective(400) rotate3d(1,0,0,-90deg);
+    -webkit-transform-origin:50% 0;
+    -webkit-transition:350ms;
+    -moz-transition:350ms;
+    -o-transition:350ms;
+    transition:350ms;
+}
+.nav ul > li:hover ul {
+    max-height:1000px;
+    -webkit-transform:perspective(400) rotate3d(0,0,0,0);
+}
