@@ -12,6 +12,7 @@ declare let $;
   moduleId: module.id,
   selector: 'messaging',
   templateUrl: 'messaging.component.html',
+  styleUrls: ['messaging.component.css']
   
 })
 
@@ -26,14 +27,34 @@ export class MessagingComponent implements OnInit, OnDestroy {
             console.log(data);
             console.log(this.otherUser.username)
             if(data.from == this.otherUser.username){
-                $('#box').append($'<p>'+data.msg+'</p>');
+                $(`<p style="position:relative;
+  padding:15px;
+  margin:1em 0 3em;
+  color:#000;
+  background:#a422e5; /* default background for browsers without gradient support */
+  -webkit-border-radius:10px;
+  -moz-border-radius:10px;
+  border-radius:10px;">`+data.msg+`</p>`).appendTo($('#box'));
             }
             
         }).bind(this));
 
         socketService.socket.on('self_msg', ((data) =>{
 
-            $('#box').append($'<p>'+data.msg+'</p>');
+            // $('#box').append($'<p>'+data.msg+'</p>');
+            $(`<p style="position:relative;
+  padding:15px;
+  margin:1em 0 3em;
+  color:#000;
+  background:#f3961c; /* default background for browsers without gradient support */
+  /* css3 */
+  background:-webkit-gradient(linear, 0 0, 0 100%, from(#f9d835), to(#f3961c));
+  background:-moz-linear-gradient(#f9d835, #f3961c);
+  background:-o-linear-gradient(#f9d835, #f3961c);
+  background:linear-gradient(#f9d835, #f3961c);
+  -webkit-border-radius:10px;
+  -moz-border-radius:10px;
+  border-radius:10px;">`+data.msg+`</p>`).appendTo($('#box'));
                 
         }).bind(this));
     }

@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 
-var Conversation = require('../models/messaging');
+var Conversation = require('../models/conversation');
 
 
 router.get('/conversations', function(req, res, next){

@@ -9,8 +9,8 @@ var session = require('express-session');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-var Conversation = require('./models/messaging');
-var Message = require('./models/messaging');
+var Conversation = require('./models/conversation');
+var Message = require('./models/message');
 
 var index = require('./routes/index');
 //var tasks = require('./routes/tasks');
@@ -127,7 +127,7 @@ io.on('connection', function(socket){
   socket.on('chat', function(data){
     socket.emit('dank', data);
     socket.broadcast.emit('dank', data);
-
+    console.log(data);
     Conversation.findOne({
       $or : [
         {$and: [{person1: data.to}, {person2: data.from}]},
@@ -161,8 +161,9 @@ io.on('connection', function(socket){
 
       }else{
           var newMessage = Message({msg: data.msg, _conversation: conversation._id, _username: data.from});
+          
           newMessage.save(function(err, message){
-                  console.log(message);
+                  
                   if(err){
                       throw err;
                   }

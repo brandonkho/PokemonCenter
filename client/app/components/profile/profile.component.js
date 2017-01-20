@@ -53,7 +53,8 @@ var ProfileComponent = (function () {
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4) {
                     if (xhr.status == 200) {
-                        resolve(JSON.parse(xhr.response));
+                        console.log(xhr.response);
+                        resolve(xhr.response);
                     }
                     else {
                         reject(xhr.response);
@@ -69,6 +70,7 @@ var ProfileComponent = (function () {
             moduleId: module.id,
             selector: 'profile',
             templateUrl: 'profile.component.html',
+            styleUrls: ['profile.component.css']
         }), 
         __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router, user_service_1.UserService])
     ], ProfileComponent);

@@ -13,7 +13,7 @@ import {Pokemon} from './../../angular-models/pokemon';
   moduleId: module.id,
   selector: 'profile',
   templateUrl: 'profile.component.html',
-  
+  styleUrls: ['profile.component.css']
 })
 
 export class ProfileComponent implements OnInit, OnDestroy { 
@@ -65,7 +65,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4) {
                     if (xhr.status == 200) {
-                        resolve(JSON.parse(xhr.response));
+                        console.log(xhr.response);
+                        resolve(xhr.response);
                     } else {
                         reject(xhr.response);
                     }

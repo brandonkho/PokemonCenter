@@ -1,3 +1,10 @@
+<script>
+  $('.file-upload-button').on('click', function(){
+    console.log('fuck me amanda');
+    $('#file-input').click();
+  });
+</script>
+
 <h1 *ngIf="user">{{user.username}}</h1>
 
 <div class="profile-page" *ngIf="user">
@@ -21,6 +28,10 @@
     <button type="submit" class="submit-button">Edit</button>
   </form>
 
-  <input type="file" (change)="fileChangeEvent($event)" placeholder="Upload file..." />
+  <input type="file" #file class="file-input" (change)="fileChangeEvent($event)" placeholder="Upload file..." />
+  <input type="text" class="file-upload-input" />
+  <button type="button" class="file-upload-button" (click)="file.click()">Upload</button>
   <button type="button" (click)="upload()">Upload</button>
+
 </div>
+

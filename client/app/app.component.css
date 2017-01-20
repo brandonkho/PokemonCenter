@@ -69,6 +69,7 @@
     display: flex;
     -webkit-flex-flow: row wrap;
     justify-content: flex-end;
+    
 }
 .nav ul:before,.nav ul:after {
     content:"";
@@ -80,21 +81,22 @@
 .nav ul > li {
     float:left;
     position:relative;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 .nav a {
     display:block;
     padding:10px 20px;
     line-height:1.2em;
     color:#fff;
-    border-left:1px solid #595959;
     text-decoration: none;
 }
 .nav a:hover {
     text-decoration:none;
-    background:#595959;
+    /*background:#595959;*/
 }
 .nav li ul {
-    background:#273754;
+    background:black;
 }
 .nav li ul li {
     width:200px;
@@ -108,8 +110,8 @@
 
 .nav li ul {
     position:absolute;
-    left:0;
-    top:36px;
+    right:0;
+    top:52px;
     z-index:1;
     max-height:0;
     overflow:hidden;
@@ -123,4 +125,23 @@
 .nav ul > li:hover ul {
     max-height:1000px;
     -webkit-transform:perspective(400) rotate3d(0,0,0,0);
+}
+
+..sliding-middle-out {
+  display: inline-block;
+  position: relative;
+  padding-bottom: 3px;
+}
+.sliding-middle-out:after {
+  content: '';
+  display: block;
+  margin: auto;
+  height: 3px;
+  width: 0px;
+  background: transparent;
+  transition: width .5s ease, background-color .5s ease;
+}
+.sliding-middle-out:hover:after {
+  width: 100%;
+  background: #DA14FF;
 }
