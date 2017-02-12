@@ -25,12 +25,12 @@ var MessagingComponent = (function () {
             console.log(data);
             console.log(_this.otherUser.username);
             if (data.from == _this.otherUser.username) {
-                $("<p style=\"position:relative;\n  padding:15px;\n  margin:1em 0 3em;\n  color:#000;\n  background:#a422e5; /* default background for browsers without gradient support */\n  -webkit-border-radius:10px;\n  -moz-border-radius:10px;\n  border-radius:10px;\">" + data.msg + "</p>").appendTo($('#box'));
+                $("<p class=\"chat-bubble\">" + data.msg + "</p>").appendTo($('#box'));
             }
         }).bind(this));
         socketService.socket.on('self_msg', (function (data) {
             // $('#box').append($'<p>'+data.msg+'</p>');
-            $("<p style=\"position:relative;\n  padding:15px;\n  margin:1em 0 3em;\n  color:#000;\n  background:#f3961c; /* default background for browsers without gradient support */\n  /* css3 */\n  background:-webkit-gradient(linear, 0 0, 0 100%, from(#f9d835), to(#f3961c));\n  background:-moz-linear-gradient(#f9d835, #f3961c);\n  background:-o-linear-gradient(#f9d835, #f3961c);\n  background:linear-gradient(#f9d835, #f3961c);\n  -webkit-border-radius:10px;\n  -moz-border-radius:10px;\n  border-radius:10px;\">" + data.msg + "</p>").appendTo($('#box'));
+            $("<p class=\"chat-bubble-self\">" + data.msg + "</p>").appendTo($('#box'));
         }).bind(this));
     }
     MessagingComponent.prototype.ngOnInit = function () {

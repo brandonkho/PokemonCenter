@@ -43,5 +43,66 @@ button:disabled {
   cursor: auto;
 }
 
+.chat-bubble {
+  position: relative;
+  width: 380px;
+  padding: 10px;
+  color:#FFF;
+  background: rgba(255,0,132,1);
+  background: -moz-linear-gradient(left, rgba(255,0,132,1) 0%, rgba(255,0,132,1) 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,0,132,1)), color-stop(100%, rgba(255,0,132,1)));
+  background: -webkit-linear-gradient(left, rgba(255,0,132,1) 0%, rgba(255,0,132,1) 100%);
+  background: -o-linear-gradient(left, rgba(255,0,132,1) 0%, rgba(255,0,132,1) 100%);
+  background: -ms-linear-gradient(left, rgba(255,0,132,1) 0%, rgba(255,0,132,1) 100%);
+  background: linear-gradient(to right, rgba(255,0,132,1) 0%, rgba(255,0,132,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff0084', endColorstr='#ff0084', GradientType=1 );
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.chat-bubble:after {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 15px 15px 0;
+  border-color: rgba(255,0,132,1) transparent;
+  display: block;
+  width: 0;
+  z-index: 1;
+  bottom: -15px;
+  left: 51px;
+}
+
+.chat-bubble-self {
+  position: relative;
+  width: 380px;
+  padding: 10px;
+  color:#FFF;
+  background: rgba(72,226,234,1);
+  background: -moz-linear-gradient(left, rgba(72,226,234,1) 0%, rgba(31,209,229,1) 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(72,226,234,1)), color-stop(100%, rgba(31,209,229,1)));
+  background: -webkit-linear-gradient(left, rgba(72,226,234,1) 0%, rgba(31,209,229,1) 100%);
+  background: -o-linear-gradient(left, rgba(72,226,234,1) 0%, rgba(31,209,229,1) 100%);
+  background: -ms-linear-gradient(left, rgba(72,226,234,1) 0%, rgba(31,209,229,1) 100%);
+  background: linear-gradient(to right, rgba(72,226,234,1) 0%, rgba(31,209,229,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#48e2ea', endColorstr='#1fd1e5', GradientType=1 );
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.chat-bubble-self:after {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 15px 15px 0;
+  border-color: rgba(72,226,234,1) transparent;
+  display: block;
+  width: 0;
+  z-index: 1;
+  bottom: -15px;
+  left: 298px;
+}
 
 
