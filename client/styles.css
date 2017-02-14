@@ -45,7 +45,8 @@ button:disabled {
 
 .chat-bubble {
   position: relative;
-  width: 380px;
+  left: 30px;
+  width: 300px;
   padding: 10px;
   color:#FFF;
   background: rgba(255,0,132,1);
@@ -61,7 +62,7 @@ button:disabled {
   border-radius: 10px;
 }
 
-.chat-bubble:after {
+/*.chat-bubble:after {
   content: '';
   position: absolute;
   border-style: solid;
@@ -72,11 +73,12 @@ button:disabled {
   z-index: 1;
   bottom: -15px;
   left: 51px;
-}
+}*/
 
 .chat-bubble-self {
   position: relative;
-  width: 380px;
+  left: 270px;
+  width: 300px;
   padding: 10px;
   color:#FFF;
   background: rgba(72,226,234,1);
@@ -92,7 +94,7 @@ button:disabled {
   border-radius: 10px;
 }
 
-.chat-bubble-self:after {
+/*.chat-bubble-self:after {
   content: '';
   position: absolute;
   border-style: solid;
@@ -103,6 +105,6 @@ button:disabled {
   z-index: 1;
   bottom: -15px;
   left: 298px;
-}
+}*/
 
 

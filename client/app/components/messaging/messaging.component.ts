@@ -27,7 +27,7 @@ export class MessagingComponent implements OnInit, OnDestroy {
             console.log(data);
             console.log(this.otherUser.username)
             if(data.from == this.otherUser.username){
-                $(`<p class="chat-bubble">`+data.msg+`</p>`).appendTo($('#box'));
+                $(`<p class="chat-bubble">`+data.msg+`</p>`).appendTo($('#message-box'));
             }
             
         }).bind(this));
@@ -35,7 +35,7 @@ export class MessagingComponent implements OnInit, OnDestroy {
         socketService.socket.on('self_msg', ((data) =>{
 
             // $('#box').append($'<p>'+data.msg+'</p>');
-            $(`<p class="chat-bubble-self">`+data.msg+`</p>`).appendTo($('#box'));
+            $(`<p class="chat-bubble-self">`+data.msg+`</p>`).appendTo($('#message-box'));
                 
         }).bind(this));
     }

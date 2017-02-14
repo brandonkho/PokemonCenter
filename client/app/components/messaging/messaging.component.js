@@ -25,12 +25,12 @@ var MessagingComponent = (function () {
             console.log(data);
             console.log(_this.otherUser.username);
             if (data.from == _this.otherUser.username) {
-                $("<p class=\"chat-bubble\">" + data.msg + "</p>").appendTo($('#box'));
+                $("<p class=\"chat-bubble\">" + data.msg + "</p>").appendTo($('#message-box'));
             }
         }).bind(this));
         socketService.socket.on('self_msg', (function (data) {
             // $('#box').append($'<p>'+data.msg+'</p>');
-            $("<p class=\"chat-bubble-self\">" + data.msg + "</p>").appendTo($('#box'));
+            $("<p class=\"chat-bubble-self\">" + data.msg + "</p>").appendTo($('#message-box'));
         }).bind(this));
     }
     MessagingComponent.prototype.ngOnInit = function () {
