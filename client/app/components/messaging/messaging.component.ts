@@ -5,6 +5,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import {SocketService} from './../../services/socket-service/socket.service';
 import {AuthService} from './../../services/auth-service/auth.service';
 import {UserService} from '../../services/user-service/user.service';
+import {MessagingService} from '../../services/messaging-service/messaging.service';
 
 declare let $;
 
@@ -21,8 +22,16 @@ export class MessagingComponent implements OnInit, OnDestroy {
     private sub: any;
     otherUser: any;
     message: string;
+    messageList: any[];
 
-    constructor(private socketService: SocketService, private authService: AuthService, private userService: UserService, private route: ActivatedRoute, private router: Router){
+    constructor(
+        private socketService: SocketService, 
+        private authService: AuthService, 
+        private userService: UserService, 
+        private messagingService:MessagingService, 
+        private route: ActivatedRoute, 
+        private router: Router
+        ){
         socketService.socket.on('new_msg', ((data) =>{
             console.log(data);
             console.log(this.otherUser.username)
@@ -38,6 +47,8 @@ export class MessagingComponent implements OnInit, OnDestroy {
             $(`<p class="chat-bubble-self">`+data.msg+`</p>`).appendTo($('#message-box'));
                 
         }).bind(this));
+
+
     }
 
     ngOnInit() {
@@ -46,12 +57,25 @@ export class MessagingComponent implements OnInit, OnDestroy {
             .subscribe(user => {
                 console.log(user);
                 this.otherUser = user;
+            }, 
+            error => console.log("Error: ", error), 
+            () => {
+                console.log(this.otherUser.username);
+                this.messagingService.getMessages(this.otherUser.username)
+                .subscribe(messageList => {
+                    console.log(messageList);
+                    this.messageList = messageList;
+                });
             });
             //this.username = params['username']; // (+) converts string 'id' to a number
 
             // In a real app: dispatch action to load the details here.
         });
         this.socketService.socket.emit('join', {user: this.authService.currentUser});
+
+        
+
+        
     }
 
     ngOnDestroy() {

@@ -1,7 +1,8 @@
 <h1> {{title}} </h1>
 
 <div id="box">
-	<div id="message-box">
+	<div id="message-box" >
+		<p class="chat-bubble" *ngFor="let message of messageList">{{message.msg}}</p>
 	</div>
 </div>
 

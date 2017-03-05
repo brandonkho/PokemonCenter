@@ -13,12 +13,14 @@ var router_1 = require('@angular/router');
 var socket_service_1 = require('./../../services/socket-service/socket.service');
 var auth_service_1 = require('./../../services/auth-service/auth.service');
 var user_service_1 = require('../../services/user-service/user.service');
+var messaging_service_1 = require('../../services/messaging-service/messaging.service');
 var MessagingComponent = (function () {
-    function MessagingComponent(socketService, authService, userService, route, router) {
+    function MessagingComponent(socketService, authService, userService, messagingService, route, router) {
         var _this = this;
         this.socketService = socketService;
         this.authService = authService;
         this.userService = userService;
+        this.messagingService = messagingService;
         this.route = route;
         this.router = router;
         socketService.socket.on('new_msg', (function (data) {
@@ -40,6 +42,13 @@ var MessagingComponent = (function () {
                 .subscribe(function (user) {
                 console.log(user);
                 _this.otherUser = user;
+            }, function (error) { return console.log("Error: ", error); }, function () {
+                console.log(_this.otherUser.username);
+                _this.messagingService.getMessages(_this.otherUser.username)
+                    .subscribe(function (messageList) {
+                    console.log(messageList);
+                    _this.messageList = messageList;
+                });
             });
             //this.username = params['username']; // (+) converts string 'id' to a number
             // In a real app: dispatch action to load the details here.
@@ -60,7 +69,7 @@ var MessagingComponent = (function () {
             templateUrl: 'messaging.component.html',
             styleUrls: ['messaging.component.css']
         }), 
-        __metadata('design:paramtypes', [socket_service_1.SocketService, auth_service_1.AuthService, user_service_1.UserService, router_1.ActivatedRoute, router_1.Router])
+        __metadata('design:paramtypes', [socket_service_1.SocketService, auth_service_1.AuthService, user_service_1.UserService, messaging_service_1.MessagingService, router_1.ActivatedRoute, router_1.Router])
     ], MessagingComponent);
     return MessagingComponent;
 }());

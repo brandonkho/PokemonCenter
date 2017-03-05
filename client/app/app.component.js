@@ -14,6 +14,7 @@ var pokemon_service_1 = require('./services/pokemon-service/pokemon.service');
 var auth_service_1 = require('./services/auth-service/auth.service');
 var user_service_1 = require('./services/user-service/user.service');
 var socket_service_1 = require('./services/socket-service/socket.service');
+var messaging_service_1 = require('./services/messaging-service/messaging.service');
 var router_1 = require('@angular/router');
 var AppComponent = (function () {
     function AppComponent(authService, socketService, router) {
@@ -44,7 +45,7 @@ var AppComponent = (function () {
             selector: 'my-app',
             templateUrl: 'app.component.html',
             styleUrls: ['app.component.css'],
-            providers: [task_service_1.TaskService, pokemon_service_1.PokemonService, auth_service_1.AuthService, user_service_1.UserService, socket_service_1.SocketService]
+            providers: [task_service_1.TaskService, pokemon_service_1.PokemonService, auth_service_1.AuthService, user_service_1.UserService, socket_service_1.SocketService, messaging_service_1.MessagingService]
         }), 
         __metadata('design:paramtypes', [auth_service_1.AuthService, socket_service_1.SocketService, router_1.Router])
     ], AppComponent);

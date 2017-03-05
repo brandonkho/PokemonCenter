@@ -4,6 +4,7 @@ import {PokemonService} from './services/pokemon-service/pokemon.service';
 import {AuthService} from './services/auth-service/auth.service';
 import {UserService} from './services/user-service/user.service';
 import {SocketService} from './services/socket-service/socket.service';
+import {MessagingService} from './services/messaging-service/messaging.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
@@ -11,7 +12,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
   selector: 'my-app',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css'],
-  providers:[TaskService, PokemonService, AuthService, UserService, SocketService]
+  providers:[TaskService, PokemonService, AuthService, UserService, SocketService, MessagingService]
 })
 
 export class AppComponent {
